@@ -1,0 +1,73 @@
+# --- SYSTEM / ENVIRONNEMENT ---
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.DS_Store
+.env
+.env.*
+.idea/
+.vscode/
+*.log
+.cache/
+*.ipynb_checkpoints/
+
+# --- DEPENDANCES ---
+node_modules/
+package-lock.json
+yarn.lock
+dist/
+build/
+
+# --- DATASETS / AUDIO / IMAGES ---
+# Données brutes (ne jamais push)
+data/raw_audio/
+data/raw_audio/**/*
+
+data/image_raw/
+data/image_raw/**/*
+
+# Données traitées lourdes
+data/audio_proc/
+data/image_proc/
+data/features/
+data/embeddings/
+data/models/
+data/experiments/
+data/checkpoints/
+
+# --- SORTIES / EXPORTS ---
+exports/
+outputs/
+renders/
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.mid
+*.midi
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.mov
+
+# --- NOTEBOOKS TEMPORAIRES / TESTS ---
+notebooks/tmp/
+scratch/
+*.tmp
+*.bak
+
+# --- MODELES / POIDS ---
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# --- CONFIGS LOCALES ---
+*.local.json
+*.local.yaml
+*.secret.*
+config_local/
+secrets/
