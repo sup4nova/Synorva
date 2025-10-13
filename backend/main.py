@@ -4,7 +4,9 @@ import time
 import pandas as pd
 import os
 from backend.audio_analysis import extract_audio_features
-from backend.label_emotions import label_dataframe
+from backend.label_audio_emotions import label_dataframe
+from backend.build_picture_dataset import main as build_image_features_csv
+from backend.label_picture_emotions import label_image_dataframe
 from dotenv import load_dotenv
  
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,6 +20,9 @@ AUDIO_DIR    = _as_path(os.getenv("AUDIO_DIR"), "data/raw_audio")
 CSV_FEATURES = _as_path(os.getenv("CSV_FEATURES"), "data/audio_features.csv")
 CSV_LABELED  = _as_path(os.getenv("CSV_LABELED"), "data/audio_features_labeled.csv")
 BATCH_SIZE   = int(os.getenv("BATCH_SIZE", 10))
+PICTURE_DIR      = _as_path(os.getenv("PICTURE_DIR"), "data/raw_picture")
+CSV_PICT_FEATS   = _as_path(os.getenv("CSV_PICTURE_FEATURES"), "data/picture_features.csv")
+CSV_PICT_LABELED = _as_path(os.getenv("CSV_PICTURE_FEATURES_LABELED"), "data/picture_features_labeled.csv")
 
 def build_features_csv():
     """scan wav files, extract audio features in batches and update audio_features.csv"""
@@ -93,3 +98,37 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def label_image_features_csv():
+    if not CSV_PICT_FEATS.exists():
+        print("no picture features csv to label yet. run image feature build first.")
+        return
+    df = pd.read_csv(CSV_PICT_FEATS)
+    if df.empty:
+        print("picture features csv is empty.")
+        return
+    labeled = label_image_dataframe(df)
+    labeled.to_csv(CSV_PICT_LABELED, index=False)
+    print(f"labeled images → {CSV_PICT_LABELED}")
+    print(labeled[["file","valence","arousal","emotion"]].head(8).to_string(index=False))
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", choices=["audio","image","both"], default="both",
+                        help="pipeline à exécuter")
+    args = parser.parse_args()
+
+    if args.mode in ("audio","both"):
+        print("AUDIO  step 1/2: features…")
+        build_features_csv()
+        print("AUDIO  step 2/2: labeling…")
+        label_features_csv()
+
+    if args.mode in ("image","both"):
+        print("\nIMAGE step 1/2: features…")
+        build_image_features_csv()
+        print("IMAGE step 2/2: labeling…")
+        label_image_features_csv()
+
+    print("\ndone")

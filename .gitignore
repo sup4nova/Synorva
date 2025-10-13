@@ -25,8 +25,8 @@ build/
 data/raw_audio/
 data/raw_audio/**/*
 
-data/image_raw/
-data/image_raw/**/*
+data/raw_picture/
+data/raw_picture/**/*
 
 # Données traitées lourdes
 data/audio_proc/
@@ -75,3 +75,6 @@ secrets/
 #--- DATASETS ---
 *.csv
 data/**/*.csv
+
+#--- FETCH PICS ---
+backend/fetch_dataset.py
