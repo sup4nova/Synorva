@@ -2,16 +2,20 @@
 from pathlib import Path
 import pandas as pd
 import time
-from audio_analysis import extract_audio_features  
+from backend.audio_analysis import extract_audio_features
+from dotenv import load_dotenv
+import os
 
-AUDIO_DIR = Path("../data/raw_audio")
-CSV_PATH = Path("../data/audio_features.csv")
-BATCH_SIZE = 10
+load_dotenv()
+
+AUDIO_DIR = Path(os.getenv("AUDIO_DIR", "./data/raw_audio"))
+CSV_FEATURES = Path(os.getenv("CSV_FEATURES", "./data/audio_features.csv"))
+BATCH_SIZE = int(os.getenv("BATCH_SIZE", 10))
 
 def main():
-    # Read existing CSV if it exists
-    if CSV_PATH.exists():
-        df = pd.read_csv(CSV_PATH)
+    # read existing CSV if it exists
+    if CSV_FEATURES.exists():
+        df = pd.read_csv(CSV_FEATURES)
         done = set(df["file"])
     else:
         df = pd.DataFrame()
@@ -36,10 +40,10 @@ def main():
                 print(f"Error on {path.name}: {e}")
 
         df = pd.concat([df, pd.DataFrame(rows)], ignore_index=True)
-        df.to_csv(CSV_PATH, index=False)
-        print(f"Added {len(rows)} files → {CSV_PATH}")
+        df.to_csv(CSV_FEATURES, index=False)
+        print(f"Added {len(rows)} files → {CSV_FEATURES}")
 
-        # If there are remaining files, pause before continuing
+        # if there are remaining files, pause before continuing
         if files:
             print(f"\nPausing 10s before processing the next {min(BATCH_SIZE, len(files))} files...")
             for i in range(10, 0, -1):

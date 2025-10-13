@@ -1,13 +1,18 @@
 # backend/audio_analysis.py
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 import numpy as np
 import librosa
 
-TARGET_SR = 22050
-READ_SECONDS = 30
+
+load_dotenv()
+
+TARGET_SR = int(os.getenv("TARGET_SR", 22050))
+READ_SECONDS = int(os.getenv("READ_SECONDS", 30))
 
 def extract_audio_features(path):
-    """Analyze an audio file and return a dictionary of extracted features."""
+    """analyze an audio file and return a dictionary of extracted features"""
     y, sr = librosa.load(path, sr=TARGET_SR, mono=True, duration=READ_SECONDS)
 
     zcr = np.mean(librosa.feature.zero_crossing_rate(y=y))

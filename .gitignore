@@ -71,3 +71,7 @@ scratch/
 *.secret.*
 config_local/
 secrets/
+
+#--- DATASETS ---
+*.csv
+data/**/*.csv
