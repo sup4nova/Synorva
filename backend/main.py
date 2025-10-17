@@ -7,7 +7,21 @@ from backend.audio_analysis import extract_audio_features
 from backend.label_audio_emotions import label_dataframe
 from backend.build_picture_dataset import main as build_image_features_csv
 from backend.label_picture_emotions import label_image_dataframe
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from uuid import uuid4
+from typing import Dict
+import os
 from dotenv import load_dotenv
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"], 
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
  
 ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
@@ -132,3 +146,31 @@ if __name__ == "__main__":
         label_image_features_csv()
 
     print("\ndone")
+
+@app.get("/")
+def root():
+    return {"message": "FastAPI est connecté et prêt."}
+
+@app.post("/upload-image")
+async def upload_image(file: UploadFile = File(...)):
+    # Sécurité: vérifie le type MIME
+    if not file.content_type or not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Le fichier n'est pas une image.")
+
+    data = await file.read()
+    os.makedirs("uploads", exist_ok=True)
+    outpath = os.path.join("uploads", f"{uuid4().hex}_{file.filename}")
+    with open(outpath, "wb") as f:
+        f.write(data)
+
+    return {
+        "filename": file.filename,
+        "saved_as": outpath,
+        "content_type": file.content_type,
+        "size": len(data),
+        "message": "Image reçue",
+    }
+@app.get("/health")
+def health():
+    print("→ /health hit")
+    return {"ok": True}
