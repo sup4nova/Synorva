@@ -1,0 +1,22 @@
+{
+  "spectrum": "dreamy",
+  "query": "stars milky way long exposure",
+  "id": 6262905,
+  "width": 2594,
+  "height": 3459,
+  "avg_color": "#392E32",
+  "alt": "Breathtaking view of the Milky Way galaxy over silhouetted mountains in Switzerland.",
+  "photographer": "Marek Piwnicki",
+  "photographer_url": "https://www.pexels.com/@marek-piwnicki-3907296",
+  "src": {
+    "original": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg",
+    "large2x": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/6262905/pexels-photo-6262905.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/silhouette-of-mountain-under-starry-night-6262905/"
+}

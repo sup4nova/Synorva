@@ -1,0 +1,22 @@
+{
+  "spectrum": "melancholic",
+  "query": "gray seascape solitude",
+  "id": 14750508,
+  "width": 2718,
+  "height": 4069,
+  "avg_color": "#7D7F7E",
+  "alt": "A lone figure stands on a cliff by the sea under a moody sky.",
+  "photographer": "Josh Hild",
+  "photographer_url": "https://www.pexels.com/@josh-hild-1270765",
+  "src": {
+    "original": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg",
+    "large2x": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/14750508/pexels-photo-14750508.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/a-person-standing-on-a-hill-overlooking-the-ocean-14750508/"
+}

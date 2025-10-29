@@ -1,0 +1,22 @@
+{
+  "spectrum": "dark",
+  "query": "brooding storm clouds",
+  "id": 7126188,
+  "width": 3648,
+  "height": 5472,
+  "avg_color": "#4F6371",
+  "alt": "Moody sea with waves crashing against rocks under dark clouds near mountainous horizon.",
+  "photographer": "Ruvim",
+  "photographer_url": "https://www.pexels.com/@ruvim-1807011",
+  "src": {
+    "original": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg",
+    "large2x": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/7126188/pexels-photo-7126188.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/dramatic-clouds-over-a-sea-and-mountains-in-distance-7126188/"
+}

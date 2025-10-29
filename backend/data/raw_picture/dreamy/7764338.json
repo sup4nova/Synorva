@@ -1,0 +1,22 @@
+{
+  "spectrum": "dreamy",
+  "query": "stars milky way long exposure",
+  "id": 7764338,
+  "width": 5472,
+  "height": 3648,
+  "avg_color": "#373D45",
+  "alt": "Beautiful long exposure of star trails over the New Zealand coast at night.",
+  "photographer": "Marek Piwnicki",
+  "photographer_url": "https://www.pexels.com/@marek-piwnicki-3907296",
+  "src": {
+    "original": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg",
+    "large2x": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/7764338/pexels-photo-7764338.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/body-of-water-during-night-time-7764338/"
+}

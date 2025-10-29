@@ -78,3 +78,6 @@ data/**/*.csv
 
 #--- FETCH PICS ---
 backend/fetch_dataset.py
+
+backend/models/picture_valaro.meta.json
+backend/models/picture_valaro.pkl

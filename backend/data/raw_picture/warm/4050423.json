@@ -1,0 +1,22 @@
+{
+  "spectrum": "warm",
+  "query": "cozy interior warm light",
+  "id": 4050423,
+  "width": 4199,
+  "height": 6299,
+  "avg_color": "#B3A398",
+  "alt": "A stylish bedroom setup featuring a laptop, orange pillows, and modern decor.",
+  "photographer": "Vlada Karpovich",
+  "photographer_url": "https://www.pexels.com/@vlada-karpovich",
+  "src": {
+    "original": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg",
+    "large2x": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/4050423/pexels-photo-4050423.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/empty-bed-with-laptop-and-notebook-4050423/"
+}

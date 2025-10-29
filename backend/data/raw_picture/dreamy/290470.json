@@ -1,0 +1,22 @@
+{
+  "spectrum": "dreamy",
+  "query": "stars milky way long exposure",
+  "id": 290470,
+  "width": 5472,
+  "height": 3648,
+  "avg_color": "#2E2725",
+  "alt": "Enchanting long exposure of colorful light trails on a winding road beneath a star-filled sky.",
+  "photographer": "Pixabay",
+  "photographer_url": "https://www.pexels.com/@pixabay",
+  "src": {
+    "original": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg",
+    "large2x": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/290470/pexels-photo-290470.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/lighted-roadside-rings-290470/"
+}

@@ -1,0 +1,22 @@
+{
+  "spectrum": "dark",
+  "query": "brooding storm clouds",
+  "id": 14197456,
+  "width": 3024,
+  "height": 4032,
+  "avg_color": "#4B5049",
+  "alt": "Captivating image of a grassy field under dark, stormy clouds, evoking a moody atmosphere.",
+  "photographer": "Anastasia  Sautina",
+  "photographer_url": "https://www.pexels.com/@anastasia-sautina-351053757",
+  "src": {
+    "original": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg",
+    "large2x": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/14197456/pexels-photo-14197456.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/green-grass-field-under-gray-clouds-14197456/"
+}

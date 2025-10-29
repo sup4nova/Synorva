@@ -3,6 +3,31 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageStat
 import cv2
+import joblib, json
+_MODEL = None
+_META  = None
+
+FEATURE_COLS = [
+    "width","height","aspect_ratio",
+    "brightness_mean","saturation_mean","contrast_std",
+    "colorfulness","warmth","edge_density","sharpness","faces_ratio",
+]
+
+def _load_regressor():
+    global _MODEL, _META
+    if _MODEL is None:
+        _MODEL = joblib.load("backend/models/picture_valaro.pkl")
+        _META  = json.loads(Path("backend/models/picture_valaro.meta.json").read_text(encoding="utf-8"))
+    return _MODEL, _META
+
+def predict_valaro_from_bgr(img_bgr, file_name=None):
+    model, meta = _load_regressor()
+    feats = extract_image_features(img_bgr, file_name=file_name)
+    cols = meta["feature_cols"]  # même ordre qu'au train
+    X = np.array([[float(feats[c]) for c in cols]], dtype=float)
+    pred = model.predict(X)[0]
+    return {"valence": float(pred[0]), "arousal": float(pred[1]), "features_used": cols}
+
 
 def _pil_to_bgr(img):
     return cv2.cvtColor(np.array(img.convert("RGB")), cv2.COLOR_RGB2BGR)
@@ -45,32 +70,29 @@ def _faces_ratio(img_bgr):
         return float(sum(areas) / (gray.shape[0] * gray.shape[1]))
     except Exception:
         return 0.0
+    
+def extract_image_features(img_bgr, file_name: str|None=None):
+    # calcule exactement les mêmes choses que dans extract_image_features(path)
+    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+    pil = Image.fromarray(img_rgb).convert("RGB")
 
-def extract_image_features(path: str | Path):
-    """Analyse purement visuelle d'une image, sans texte ni métadonnées."""
-    p = Path(path)
-    img = Image.open(p).convert("RGB")
-
-    # Redimensionner pour accélérer
     max_side = 1024
-    if max(img.size) > max_side:
-        img.thumbnail((max_side, max_side), Image.LANCZOS)
+    if max(pil.size) > max_side:
+        pil.thumbnail((max_side, max_side), Image.LANCZOS)
 
-    stat = ImageStat.Stat(img)
-    mean_rgb = np.array(stat.mean) / 255.0
+    stat = ImageStat.Stat(pil)
     std_rgb = np.array(stat.stddev) / 255.0
 
-    img_bgr = _pil_to_bgr(img)
+    img_bgr = _pil_to_bgr(pil)               # re-bgr après resize éventuel
     img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
     hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
     sat = float(hsv[..., 1].mean() / 255.0)
     val = float(hsv[..., 2].mean() / 255.0)
 
-    return {
-        "file": p.name,
-        "width": img.width,
-        "height": img.height,
-        "aspect_ratio": img.width / img.height,
+    feats = {
+        "width": pil.width,
+        "height": pil.height,
+        "aspect_ratio": pil.width / pil.height,
         "brightness_mean": val,
         "saturation_mean": sat,
         "contrast_std": float(np.sqrt((std_rgb**2).mean())),
@@ -80,3 +102,6 @@ def extract_image_features(path: str | Path):
         "sharpness": _sharpness_var_laplacian(img_gray),
         "faces_ratio": _faces_ratio(img_bgr),
     }
+    if file_name is not None:
+        feats = {"file": file_name, **feats}
+    return feats

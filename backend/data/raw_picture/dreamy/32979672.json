@@ -1,0 +1,22 @@
+{
+  "spectrum": "dreamy",
+  "query": "stars milky way long exposure",
+  "id": 32979672,
+  "width": 4240,
+  "height": 2385,
+  "avg_color": "#191816",
+  "alt": "Marvel at the breathtaking view of the Milky Way galaxy under a star-filled night sky.",
+  "photographer": "ken choi",
+  "photographer_url": "https://www.pexels.com/@ken-choi-2103753163",
+  "src": {
+    "original": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg",
+    "large2x": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/32979672/pexels-photo-32979672.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/stunning-milky-way-galaxy-night-sky-view-32979672/"
+}

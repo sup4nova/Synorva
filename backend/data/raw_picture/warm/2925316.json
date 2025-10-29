@@ -1,0 +1,22 @@
+{
+  "spectrum": "warm",
+  "query": "cozy interior warm light",
+  "id": 2925316,
+  "width": 2747,
+  "height": 4113,
+  "avg_color": "#191A18",
+  "alt": "A dimly lit scene of a person reading an open book in a cozy, atmospheric space.",
+  "photographer": "cottonbro studio",
+  "photographer_url": "https://www.pexels.com/@cottonbro",
+  "src": {
+    "original": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg",
+    "large2x": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/2925316/pexels-photo-2925316.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/person-holding-an-open-book-2925316/"
+}

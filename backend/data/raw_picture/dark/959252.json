@@ -1,0 +1,22 @@
+{
+  "spectrum": "dark",
+  "query": "brooding storm clouds",
+  "id": 959252,
+  "width": 6000,
+  "height": 4000,
+  "avg_color": "#747F96",
+  "alt": "Capture of a dramatic, stormy sky filled with dark clouds against a pale background.",
+  "photographer": "Kennst du schon die Umkreisel App?",
+  "photographer_url": "https://www.pexels.com/@umkreisel-app",
+  "src": {
+    "original": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg",
+    "large2x": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/959252/dramatic-clouds-sky-drama-959252.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/black-and-white-sky-959252/"
+}

@@ -1,0 +1,22 @@
+{
+  "spectrum": "warm",
+  "query": "cozy interior warm light",
+  "id": 6800945,
+  "width": 2160,
+  "height": 3840,
+  "avg_color": "#D9C7B3",
+  "alt": "Cozy wooden chair with cushion in a modern minimalist room, perfect for relaxation.",
+  "photographer": "Artem Podrez",
+  "photographer_url": "https://www.pexels.com/@artempodrez",
+  "src": {
+    "original": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg",
+    "large2x": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "large": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "medium": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&h=350",
+    "small": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "portrait": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+    "landscape": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "tiny": "https://images.pexels.com/photos/6800945/pexels-photo-6800945.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+  },
+  "url": "https://www.pexels.com/photo/light-relaxation-texture-bed-6800945/"
+}

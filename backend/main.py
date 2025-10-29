@@ -7,18 +7,25 @@ from backend.audio_analysis import extract_audio_features
 from backend.label_audio_emotions import label_dataframe
 from backend.build_picture_dataset import main as build_image_features_csv
 from backend.label_picture_emotions import label_image_dataframe
+from backend.image_analysis import predict_valaro_from_bgr
+from backend.auto_arranger import render_track
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from uuid import uuid4
 from typing import Dict
 import os
 from dotenv import load_dotenv
+from backend.image_analysis import predict_valaro_from_bgr
+import numpy as np, cv2
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="backend/static"), name="static")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"], 
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -153,24 +160,45 @@ def root():
 
 @app.post("/upload-image")
 async def upload_image(file: UploadFile = File(...)):
-    # Sécurité: vérifie le type MIME
     if not file.content_type or not file.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="Le fichier n'est pas une image.")
-
-    data = await file.read()
+        raise HTTPException(400, "Le fichier n'est pas une image.")
     os.makedirs("uploads", exist_ok=True)
-    outpath = os.path.join("uploads", f"{uuid4().hex}_{file.filename}")
-    with open(outpath, "wb") as f:
-        f.write(data)
+    path = os.path.join("uploads", f"{uuid4().hex}_{file.filename}")
+    data = await file.read()
+    with open(path, "wb") as f: f.write(data)
+    return {"message": "ok", "saved_as": path, "size": len(data)}
 
-    return {
-        "filename": file.filename,
-        "saved_as": outpath,
-        "content_type": file.content_type,
-        "size": len(data),
-        "message": "Image reçue",
-    }
 @app.get("/health")
 def health():
     print("→ /health hit")
     return {"ok": True}
+
+@app.post("/api/analyze-image")
+async def analyze_image(file: UploadFile = File(...)):
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(400, "Le fichier doit être une image.")
+    data = await file.read()
+    img = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
+    if img is None:
+        raise HTTPException(400, "Image illisible.")
+    out = predict_valaro_from_bgr(img)
+    return out
+
+@app.post("/api/build-track")
+async def build_track(file: UploadFile = File(...)):
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(400, "Image attendue.")
+    data = await file.read()
+    img  = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
+    if img is None:
+        raise HTTPException(400, "Image illisible.")
+    pred = predict_valaro_from_bgr(img, file.filename)  # -> {valence, arousal}
+    info = render_track(target_val=pred["valence"], target_aro=pred["arousal"])
+    # URL publique vers le mix wav
+    rel = info["output"].replace("backend", "").replace("\\", "/").lstrip("/")
+    return {
+        "valence": pred["valence"],
+        "arousal": pred["arousal"],
+        "mix_url": f"/{rel}",   # ex: /static/renders/mix.wav
+        "picks": info["picks"],
+    }
