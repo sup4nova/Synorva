@@ -88,6 +88,11 @@ def search_sounds(query: str, key: str, page: int = 1, page_size: int = 15) -> d
     for attempt in range(1, 4):
         try:
             resp = requests.get(f"{FREESOUND_API}/search/text/", params=params, timeout=20)
+            if resp.status_code == 429:
+                wait = 30 * attempt
+                print(f"  ⚠ Rate-limit 429 ({attempt}/3) — pause {wait}s…")
+                time.sleep(wait)
+                continue
             resp.raise_for_status()
             return resp.json()
         except (requests.exceptions.ConnectTimeout,
@@ -287,8 +292,8 @@ def main():
                         help="Dossier de sortie (relatif à la racine du projet)")
     parser.add_argument("--csv", type=str, default="backend/data/samples_index.csv",
                         help="Chemin du CSV index des samples")
-    parser.add_argument("--pause", type=float, default=0.3,
-                        help="Pause entre téléchargements en secondes (défaut: 0.3)")
+    parser.add_argument("--pause", type=float, default=1.5,
+                        help="Pause entre téléchargements en secondes (défaut: 1.5)")
     parser.add_argument("--no-label", action="store_true",
                         help="Ne pas calculer valence/arousal après la collecte")
     args = parser.parse_args()
