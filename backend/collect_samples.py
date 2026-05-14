@@ -85,9 +85,18 @@ def search_sounds(query: str, key: str, page: int = 1, page_size: int = 15) -> d
         "page_size": page_size,
         "token": key,
     }
-    resp = requests.get(f"{FREESOUND_API}/search/text/", params=params, timeout=15)
-    resp.raise_for_status()
-    return resp.json()
+    for attempt in range(1, 4):
+        try:
+            resp = requests.get(f"{FREESOUND_API}/search/text/", params=params, timeout=20)
+            resp.raise_for_status()
+            return resp.json()
+        except (requests.exceptions.ConnectTimeout,
+                requests.exceptions.ReadTimeout,
+                requests.exceptions.ConnectionError) as e:
+            wait = attempt * 5
+            print(f"  ⚠ Réseau ({attempt}/3) : {e.__class__.__name__} — retry dans {wait}s…")
+            time.sleep(wait)
+    raise requests.exceptions.ConnectionError(f"Freesound injoignable après 3 tentatives ({query})")
 
 
 def get_download_url(sound_id: int, key: str) -> str | None:
@@ -157,8 +166,10 @@ def collect(out_dir: Path, csv_path: Path, per_type: int, pause: float):
             while downloaded_this_type < per_type:
                 try:
                     data = search_sounds(query, key, page=page, page_size=15)
-                except requests.HTTPError as e:
-                    print(f"  ✗ API error ({query}): {e}")
+                except (requests.HTTPError,
+                        requests.exceptions.ConnectionError,
+                        requests.exceptions.Timeout) as e:
+                    print(f"  ✗ Skipping query '{query}': {e}")
                     break
 
                 sounds = data.get("results", [])
