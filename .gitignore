@@ -80,6 +80,7 @@ data/**/*.csv
 #--- FETCH PICS ---
 backend/fetch_dataset.py
 
-backend/static/renders/
+backend/static/renders/*
+!backend/static/renders/.gitkeep
 backend/models/*.pkl
 backend/data/raw_picture/
