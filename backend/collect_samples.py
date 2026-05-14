@@ -163,7 +163,8 @@ def collect(out_dir: Path, csv_path: Path, per_type: int, pause: float):
                 break
 
             page = 1
-            while downloaded_this_type < per_type:
+            MAX_PAGES = 5  # évite la pagination infinie si toutes les licences sont rejetées
+            while downloaded_this_type < per_type and page <= MAX_PAGES:
                 try:
                     data = search_sounds(query, key, page=page, page_size=15)
                 except (requests.HTTPError,
