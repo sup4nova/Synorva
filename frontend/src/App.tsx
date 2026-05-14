@@ -1,30 +1,67 @@
-import { Routes, Route } from "react-router-dom";
-import GradientBackground from "./components/GradientBackground";
-import ImageCard from "./components/ImageCard";
-import Upload from "./components/Upload";
+import { useEffect } from 'react'
+import Navbar from './components/Navbar'
+import HeroCard from './components/HeroCard'
+import HowItWorks from './components/HowItWorks'
+import Footer from './components/Footer'
+
+/* Scroll-reveal: add .in to .reveal elements when they enter the viewport */
+function useScrollReveal() {
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }),
+      { threshold: 0.12 }
+    )
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+}
 
 export default function App() {
+  useScrollReveal()
+
   return (
     <>
-      {/* 🌈 Fond animé */}
-      <div className="fixed inset-0 -z-10 pointer-events-none">
-        <GradientBackground />
-      </div>
+      <Navbar />
 
-      {/* 🧭 Routes */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <main className="relative z-10 min-h-screen flex items-center justify-center p-6">
-              {/* ✅ Une seule carte contenant le formulaire d’upload */}
-              <ImageCard>
-                <Upload />
-              </ImageCard>
-            </main>
-          }
-        />
-      </Routes>
+      <main>
+        {/* ── Hero ── */}
+        <section className="hero">
+          <div className="hero-bg">
+            <div className="hero-glow-a" />
+            <div className="hero-glow-b" />
+          </div>
+
+          <div className="shell">
+            <div className="hero-pill">
+              <span className="hero-pill-dot">v0.4 beta</span>
+              <span>Multimodal · Image → Emotion → Music</span>
+            </div>
+
+            <div className="hero-grid">
+              {/* Left: title + subtitle */}
+              <div>
+                <h1 className="hero-title">
+                  See sound.<br />
+                  Hear images.<br />
+                  <span className="grad">Compose feeling.</span>
+                </h1>
+                <p className="hero-sub">
+                  Synorva reads the emotion in a still image and synthesizes a coherent
+                  audio track from it — mapped through a <b>valence-arousal model</b> tuned
+                  for cinematic, ambient and electronic genres.
+                </p>
+              </div>
+
+              {/* Right: upload + VA card */}
+              <HeroCard />
+            </div>
+          </div>
+        </section>
+
+        <HowItWorks />
+      </main>
+
+      <Footer />
     </>
-  );
+  )
 }
