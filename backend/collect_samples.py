@@ -230,10 +230,53 @@ def collect(out_dir: Path, csv_path: Path, per_type: int, pause: float):
     print(f"  Téléchargés : {total_dl}  |  Ignorés (déjà présents) : {total_skip}")
     print(f"  Index CSV   : {csv_path}")
     print(f"  Dossier     : {out_dir}")
-    print(f"\n  Prochaine étape : calculer valence/arousal des samples")
-    print(f"    python -m backend.build_audio_dataset")
-    print(f"    python -m backend.label_audio_emotions  (ou via main.py --mode audio)")
     print(f"{'='*55}")
+
+
+def label_samples(csv_path: Path):
+    """Calcule valence/arousal pour tous les samples et met à jour le CSV index."""
+    import pandas as pd
+    from backend.audio_analysis import extract_audio_features
+    from backend.label_audio_emotions import label_dataframe
+
+    if not csv_path.exists():
+        print("[label] Aucun index CSV trouvé, skipping.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        print("[label] Index CSV vide, skipping.")
+        return
+
+    print(f"\nExtraction des features audio ({len(df)} samples)…")
+    rows = []
+    valid_idx = []
+    for i, row in df.iterrows():
+        path = Path(row["path"])
+        if not path.exists():
+            print(f"  ✗ Fichier manquant : {path}")
+            continue
+        try:
+            feats = extract_audio_features(path)
+            rows.append(feats)
+            valid_idx.append(i)
+            print(f"  ✓ {path.name}")
+        except Exception as e:
+            print(f"  ✗ {path.name} : {e}")
+
+    if not rows:
+        print("[label] Aucune feature extraite.")
+        return
+
+    feat_df = pd.DataFrame(rows)
+    labeled = label_dataframe(feat_df)
+
+    for j, i in enumerate(valid_idx):
+        df.at[i, "valence"] = round(float(labeled["valence"].iloc[j]), 4)
+        df.at[i, "arousal"] = round(float(labeled["arousal"].iloc[j]), 4)
+
+    df.to_csv(csv_path, index=False)
+    print(f"\n  Valence/arousal mis à jour → {csv_path}")
 
 
 def main():
@@ -246,6 +289,8 @@ def main():
                         help="Chemin du CSV index des samples")
     parser.add_argument("--pause", type=float, default=0.3,
                         help="Pause entre téléchargements en secondes (défaut: 0.3)")
+    parser.add_argument("--no-label", action="store_true",
+                        help="Ne pas calculer valence/arousal après la collecte")
     args = parser.parse_args()
 
     out_dir = ROOT / args.out
@@ -256,6 +301,9 @@ def main():
     print(f"Collecte Freesound → {out_dir}")
     print(f"  {args.per_type} samples × {n_types} types = ~{args.per_type * n_types} samples")
     collect(out_dir, csv_path, per_type=args.per_type, pause=args.pause)
+
+    if not args.no_label:
+        label_samples(csv_path)
 
 
 if __name__ == "__main__":
