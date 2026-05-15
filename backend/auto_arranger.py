@@ -58,9 +58,9 @@ def _loudness_normalize(y: np.ndarray, target_db=-18.0) -> np.ndarray:
 # ============ DATA ============
 _df_cache: Optional[pd.DataFrame] = None
 
-def load_samples_index(path=SAMPLES_CSV) -> pd.DataFrame:
+def load_samples_index(path=SAMPLES_CSV, force_reload=False) -> pd.DataFrame:
     global _df_cache
-    if _df_cache is None:
+    if _df_cache is None or force_reload:
         df = pd.read_csv(path)
         needed = {"path","type","bpm","key","valence","arousal"}
         missing = needed - set(df.columns)
@@ -118,6 +118,8 @@ def render_track(target_val: float, target_aro: float,
 
     for typ, row in picks.items():
         y = _load_prepare(row["path"], row.get("bpm", None), row.get("key", None))
+        if len(y) == 0:
+            continue
         start_bar, end_bar = ARRANGE[typ]["bars"]
         start = bars_to_samples(start_bar-1)
         end   = bars_to_samples(end_bar-1)  # exclusif sur fin

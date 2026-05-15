@@ -14,9 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from uuid import uuid4
 from typing import Dict
-import os
 from dotenv import load_dotenv
-from backend.image_analysis import predict_valaro_from_bgr
 import numpy as np, cv2
 
 app = FastAPI()
@@ -131,7 +129,8 @@ async def upload_image(file: UploadFile = File(...)):
     if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(400, "Le fichier n'est pas une image.")
     os.makedirs("uploads", exist_ok=True)
-    path = os.path.join("uploads", f"{uuid4().hex}_{file.filename}")
+    safe_name = Path(file.filename).name  # strips any directory components
+    path = os.path.join("uploads", f"{uuid4().hex}_{safe_name}")
     data = await file.read()
     with open(path, "wb") as f: f.write(data)
     return {"message": "ok", "saved_as": path, "size": len(data)}
@@ -143,7 +142,7 @@ def health():
 
 @app.post("/api/analyze-image")
 async def analyze_image(file: UploadFile = File(...)):
-    if not file.content_type.startswith("image/"):
+    if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(400, "Le fichier doit être une image.")
     data = await file.read()
     img = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)

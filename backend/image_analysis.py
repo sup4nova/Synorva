@@ -92,7 +92,7 @@ def extract_image_features(img_bgr, file_name: str|None=None):
     feats = {
         "width": pil.width,
         "height": pil.height,
-        "aspect_ratio": pil.width / pil.height,
+        "aspect_ratio": pil.width / max(pil.height, 1),
         "brightness_mean": val,
         "saturation_mean": sat,
         "contrast_std": float(np.sqrt((std_rgb**2).mean())),

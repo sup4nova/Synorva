@@ -5,7 +5,7 @@ from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.multioutput import MultiOutputRegressor
 from pathlib import Path
-from image_analysis import FEATURE_COLS  # 👈
+from backend.image_analysis import FEATURE_COLS  # 👈
 
 CSV_IN  = "backend/data/picture_features_labeled.csv"
 MODEL_P = "backend/models/picture_valaro.pkl"

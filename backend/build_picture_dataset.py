@@ -31,7 +31,7 @@ def main():
 
     # on scanne récursivement le dossier d’images
     files = [f for f in PICTURE_DIR.rglob("*")
-             if f.suffix.lower() in IMG_EXTS and f.name not in done]
+             if f.suffix.lower() in IMG_EXTS and str(f.relative_to(PICTURE_DIR)) not in done]
 
     if not files:
         print("No new images to process.")
@@ -43,7 +43,7 @@ def main():
         rows = []
 
         for path in batch:
-            rel = path.relative_to(ROOT) if path.is_absolute() or path.is_relative_to(ROOT) else path
+            rel = str(path.relative_to(PICTURE_DIR))
             print(f"\nAnalyzing image: {rel}")
             try:
                 feats = extract_image_features(path)

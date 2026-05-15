@@ -60,7 +60,7 @@ def compute_valence_arousal(df: pd.DataFrame) -> pd.DataFrame:
     def _avg(cols):
         cols = [c for c in cols if c in mfcc_z]
         if not cols:
-            return pd.Series(0, index=df.index)
+            return pd.Series(np.zeros(len(df)), index=df.index)
         return sum(mfcc_z[c] for c in cols) / float(len(cols))
 
     mfcc_low_z  = _avg([f"mfcc{i}_mean" for i in range(1, 6)])     # low = warmth/body
