@@ -153,7 +153,7 @@ async def analyze_image(file: UploadFile = File(...)):
 
 @app.post("/api/build-track")
 async def build_track(file: UploadFile = File(...)):
-    if not file.content_type.startswith("image/"):
+    if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(400, "Image attendue.")
     data = await file.read()
     img  = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
