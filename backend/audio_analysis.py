@@ -24,7 +24,6 @@ def extract_audio_features(path):
     chroma_means = np.mean(librosa.feature.chroma_stft(y=y, sr=sr), axis=1)
 
     features = {
-        "file": Path(path).name,
         "tempo_bpm": tempo,
         "zcr_mean": zcr,
         "rms_mean": rms,

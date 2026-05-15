@@ -109,17 +109,6 @@ def label_features_csv():
     print(labeled[["file", "valence", "arousal", "emotion"]].head(8).to_string(index=False))
 
 
-def main():
-    print("step 1/2: building or updating features csv...")
-    build_features_csv()
-    print("\nstep 2/2: labeling emotions...")
-    label_features_csv()
-    print("\ndone")
-
-
-if __name__ == "__main__":
-    main()
-
 def label_image_features_csv():
     if not CSV_PICT_FEATS.exists():
         print("no picture features csv to label yet. run image feature build first.")
@@ -132,27 +121,6 @@ def label_image_features_csv():
     labeled.to_csv(CSV_PICT_LABELED, index=False)
     print(f"labeled images → {CSV_PICT_LABELED}")
     print(labeled[["file","valence","arousal","emotion"]].head(8).to_string(index=False))
-
-if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=["audio","image","both"], default="both",
-                        help="pipeline à exécuter")
-    args = parser.parse_args()
-
-    if args.mode in ("audio","both"):
-        print("AUDIO  step 1/2: features…")
-        build_features_csv()
-        print("AUDIO  step 2/2: labeling…")
-        label_features_csv()
-
-    if args.mode in ("image","both"):
-        print("\nIMAGE step 1/2: features…")
-        build_image_features_csv()
-        print("IMAGE step 2/2: labeling…")
-        label_image_features_csv()
-
-    print("\ndone")
 
 @app.get("/")
 def root():
