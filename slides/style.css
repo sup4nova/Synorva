@@ -1,0 +1,336 @@
+/* ============================================================
+   Synorva — Slidev global theme
+   Auto-loaded by Slidev from the project root (./style.css).
+   Place next to slides.md. No import needed.
+   ============================================================ */
+
+:root {
+  --syn-ink-0: #07070a;
+  --syn-ink-1: #0c0c10;
+  --syn-ink-2: #131318;
+  --syn-ink-3: #1a1a21;
+  --syn-paper: #f5f3ef;
+  --syn-paper-dim: #c9c7c2;
+  --syn-mute: #8a8a93;
+  --syn-warm: #ff6b3d;
+  --syn-warm-soft: #ffb38a;
+  --syn-cool: #8b9eff;
+  --syn-cool-soft: #c5cfff;
+  --syn-line: rgba(255, 255, 255, 0.08);
+  --syn-line-2: rgba(255, 255, 255, 0.14);
+
+  /* Slidev theme hooks */
+  --slidev-theme-primary: #ff6b3d;
+}
+
+/* ---------- Base layout ---------- */
+.slidev-layout {
+  background:
+    radial-gradient(ellipse 70% 50% at 70% -10%, rgba(255, 107, 61, 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 110%, rgba(139, 158, 255, 0.08), transparent 60%),
+    var(--syn-ink-0);
+  color: var(--syn-paper-dim);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 3.2rem 4rem;
+}
+
+/* subtle grain */
+.slidev-layout::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- Headings ---------- */
+.slidev-layout h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 3.4rem;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--syn-paper);
+  margin-bottom: 1.4rem;
+}
+.slidev-layout h1 .it,
+.slidev-layout h1 em {
+  font-style: italic;
+  color: var(--syn-warm-soft);
+}
+.slidev-layout h2 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: var(--syn-paper);
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+.slidev-layout h3 {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--syn-warm-soft);
+}
+
+.slidev-layout p { margin: 0.7rem 0; }
+.slidev-layout strong { color: var(--syn-paper); font-weight: 500; }
+.slidev-layout em { color: var(--syn-cool-soft); }
+.slidev-layout a {
+  color: var(--syn-warm);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 107, 61, 0.35);
+  transition: border-color 0.2s;
+}
+.slidev-layout a:hover { border-color: var(--syn-warm); }
+
+/* ---------- Lists ---------- */
+.slidev-layout ul { margin: 0.8rem 0; }
+.slidev-layout li { margin: 0.5rem 0; padding-left: 0.3rem; }
+.slidev-layout ul li::marker { color: var(--syn-warm); }
+
+/* ---------- Blockquote ---------- */
+.slidev-layout blockquote {
+  border-left: 2px solid var(--syn-warm);
+  background: var(--syn-ink-2);
+  border-radius: 0 8px 8px 0;
+  padding: 0.7rem 1.1rem;
+  color: var(--syn-paper-dim);
+  font-style: normal;
+}
+
+/* ---------- Code ---------- */
+.slidev-layout :not(pre) > code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: var(--syn-ink-3);
+  color: var(--syn-warm-soft);
+  padding: 0.12em 0.4em;
+  border-radius: 5px;
+}
+.slidev-layout pre {
+  background: var(--syn-ink-1) !important;
+  border: 1px solid var(--syn-line);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem !important;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.7);
+}
+.slidev-layout .shiki { background: transparent !important; }
+
+/* ---------- Shared bits ---------- */
+.syn-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--syn-warm);
+  margin-bottom: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.syn-eyebrow::before {
+  content: '';
+  width: 1.4rem;
+  height: 1px;
+  background: var(--syn-warm);
+}
+.syn-sub {
+  color: var(--syn-paper-dim);
+  font-weight: 300;
+  font-size: 1.02rem;
+  max-width: 38ch;
+}
+.syn-credit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--syn-mute);
+  opacity: 0.85;
+}
+
+/* ---------- Cover ---------- */
+.syn-cover { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.syn-cover h1 { font-size: 6rem; margin-bottom: 0.4rem; }
+.syn-lead {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.4rem;
+  color: var(--syn-paper);
+  line-height: 1.05;
+  margin-bottom: 1.3rem;
+}
+.syn-lead .it { font-style: italic; color: var(--syn-warm-soft); }
+
+/* ---------- Center / idea ---------- */
+.syn-center { text-align: left; }
+.syn-question {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem;
+  line-height: 1.15;
+  color: var(--syn-paper);
+  border-left: 2px solid var(--syn-warm);
+  padding-left: 1.2rem;
+  margin: 1.6rem 0 1.2rem;
+}
+.syn-question .it { font-style: italic; color: var(--syn-warm-soft); }
+
+/* ---------- Demo ---------- */
+.syn-play {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  margin: 1.2rem 0;
+  color: var(--syn-warm);
+}
+.syn-note {
+  margin-top: 1.4rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--syn-ink-2);
+  border: 1px solid var(--syn-line);
+  border-radius: 10px;
+  font-size: 0.82rem;
+  color: var(--syn-mute);
+  font-weight: 300;
+}
+
+/* ---------- Two cols ---------- */
+.syn-twocols .syn-aside {
+  margin-top: 3.5rem;
+  background: var(--syn-ink-2);
+  border: 1px solid var(--syn-line-2);
+  border-radius: 14px;
+  padding: 1.5rem;
+  color: var(--syn-paper-dim);
+  font-size: 0.9rem;
+}
+.syn-aside-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--syn-mute);
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Stack badges ---------- */
+.syn-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+  max-width: 40rem;
+}
+.syn-stack p { margin: 0; display: contents; }
+.syn-stack img {
+  height: 2.2rem;
+  border-radius: 7px;
+  border: 1px solid var(--syn-line-2);
+}
+.syn-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 7px;
+  font-family: var(--slidev-font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--syn-line-2);
+  background: var(--syn-ink-1);
+}
+.syn-badge--warm { color: var(--syn-warm); border-color: rgba(255,107,61,0.25); }
+.syn-badge--cool { color: var(--syn-cool); border-color: rgba(139,158,255,0.25); }
+
+/* ---------- Challenge cards ---------- */
+.syn-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+.syn-card {
+  background: linear-gradient(180deg, var(--syn-ink-2), var(--syn-ink-1));
+  border: 1px solid var(--syn-line);
+  border-radius: 14px;
+  padding: 1.2rem 1.2rem 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--syn-paper-dim);
+}
+.syn-card-h {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.15rem;
+  color: var(--syn-paper);
+  margin-bottom: 0.6rem;
+}
+.syn-card-l {
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--syn-line);
+  color: var(--syn-warm-soft);
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  font-size: 0.95rem;
+}
+
+/* ---------- Roadmap ---------- */
+.syn-next { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.4rem; max-width: 44rem; }
+.syn-next-item {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: var(--syn-ink-2);
+  border: 1px solid var(--syn-line);
+  border-radius: 12px;
+}
+.syn-next-n {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.7rem;
+  color: var(--syn-warm);
+  line-height: 1;
+}
+.syn-next-item strong { display: block; color: var(--syn-paper); font-size: 1.05rem; margin-bottom: 0.2rem; font-weight: 500; }
+.syn-next-item div { font-size: 0.85rem; color: var(--syn-paper-dim); font-weight: 300; }
+
+/* ---------- Close ---------- */
+.syn-close h1 { font-size: 4.5rem; }
+.syn-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.4rem 0 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+}
+.syn-links-k {
+  display: inline-block;
+  width: 7rem;
+  color: var(--syn-mute);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+.syn-wordmark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 5rem;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+  user-select: none;
+}
+.syn-wordmark .it {
+  font-style: italic;
+  -webkit-text-stroke: 1px rgba(255, 107, 61, 0.45);
+}
+
+/* ---------- image-right tweak ---------- */
+.slidev-layout.syn-demo { padding-right: 3rem; }
