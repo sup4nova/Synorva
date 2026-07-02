@@ -1,0 +1,349 @@
+/* Upload.module.css - warm amber/orange palette */
+.uploadContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dropZone {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  min-height: 140px;
+  border: 1px dashed hsla(30, 30%, 100%, 0.10);
+  background: rgba(12, 10, 7, 0.5);
+}
+
+.dropZone.dragOver {
+  border: 1px solid hsla(22, 95%, 60%, 0.55);
+  background: hsla(22, 95%, 55%, 0.04);
+}
+
+.dropZone.hasPreview {
+  min-height: auto;
+}
+
+.previewContainer {
+  position: relative;
+}
+
+.previewImage {
+  width: 100%;
+  max-height: 13rem;
+  object-fit: cover;
+  display: block;
+}
+
+.previewOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 10, 7, 0.85) 0%, transparent 50%);
+}
+
+.previewInfo {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.previewDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: hsl(22, 95%, 60%);
+  box-shadow: 0 0 6px hsl(22, 95%, 60%);
+  flex-shrink: 0;
+}
+
+.previewFilename {
+  font-size: 0.75rem;
+  color: hsla(30, 15%, 90%, 0.7);
+  font-family: 'DM Mono', monospace;
+}
+
+.noPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  gap: 0.75rem;
+}
+
+.uploadIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(22, 95%, 60%, 0.07);
+  border: 1px solid hsla(22, 95%, 60%, 0.15);
+}
+
+.uploadText {
+  text-align: center;
+}
+
+.uploadMainText {
+  font-size: 0.875rem;
+  color: hsla(30, 15%, 85%, 0.65);
+}
+
+.uploadSubText {
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
+  color: hsla(30, 15%, 55%, 0.45);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.625rem;
+}
+
+.actionButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+}
+
+.actionButton:not(.disabled):hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.actionButton.disabled {
+  background: hsla(30, 20%, 100%, 0.03);
+  border: 1px solid hsla(30, 20%, 100%, 0.05);
+  color: hsla(30, 15%, 50%, 0.45);
+  cursor: not-allowed;
+}
+
+/* Analysis card */
+.analysisCard {
+  border-radius: 0.875rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: hsla(30, 15%, 100%, 0.025);
+  border: 1px solid hsla(30, 30%, 100%, 0.06);
+  animation: fade-in 0.35s ease-out both;
+}
+
+.labelStyle {
+  color: hsla(30, 15%, 55%, 0.85);
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Valence / Arousal bars */
+.valenceBar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.barHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.barLabel {
+  font-size: 0.75rem;
+  color: hsla(30, 15%, 60%, 0.85);
+  font-family: 'DM Mono', monospace;
+}
+
+.barValue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+}
+
+.barTrack {
+  height: 0.25rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background: hsla(30, 20%, 100%, 0.05);
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: all 0.7s ease;
+}
+
+.barFill.valence {
+  background: hsl(22, 95%, 60%);
+  box-shadow: 0 0 8px hsl(22, 95%, 60%);
+}
+
+.barFill.arousal {
+  background: hsl(38, 95%, 58%);
+  box-shadow: 0 0 8px hsl(38, 95%, 58%);
+}
+
+/* Audio card - coral accent */
+.audioCard {
+  border-radius: 0.875rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: hsla(30, 15%, 100%, 0.025);
+  border: 1px solid hsla(8, 70%, 60%, 0.14);
+  animation: fade-in 0.35s ease-out both;
+}
+
+.audioHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.downloadLink {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: hsl(22, 95%, 65%);
+  font-family: 'DM Mono', monospace;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.downloadLink:hover {
+  opacity: 0.7;
+}
+
+.audioPlayer {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.detailsSummary {
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: hsla(30, 15%, 55%, 0.75);
+  font-family: 'DM Mono', monospace;
+}
+
+.detailsArrow {
+  width: 0.625rem;
+  height: 0.625rem;
+  transition: transform 0.2s ease;
+  fill: currentColor;
+}
+
+.sampleList {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding-left: 1rem;
+}
+
+.sampleItem {
+  font-size: 0.75rem;
+  color: hsla(30, 15%, 60%, 0.65);
+  font-family: 'DM Mono', monospace;
+}
+
+.sampleType {
+  color: hsl(22, 95%, 65%);
+}
+
+.sampleMeta {
+  color: hsla(30, 15%, 55%, 0.55);
+}
+
+/* Messages */
+.message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  animation: fade-in 0.35s ease-out both;
+  font-family: 'DM Mono', monospace;
+}
+
+.message.success {
+  background: hsla(38, 80%, 50%, 0.06);
+  border: 1px solid hsla(38, 80%, 50%, 0.15);
+  color: hsl(38, 80%, 65%);
+}
+
+.message.error {
+  background: hsla(8, 80%, 55%, 0.06);
+  border: 1px solid hsla(8, 80%, 55%, 0.15);
+  color: hsl(8, 80%, 65%);
+}
+
+.messageDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.messageDot.success {
+  background: hsl(38, 80%, 58%);
+}
+
+.messageDot.error {
+  background: hsl(8, 80%, 58%);
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+  width: 0.875rem;
+  height: 0.875rem;
+  stroke: currentColor;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "feature_cols": [
+    "width",
+    "height",
+    "aspect_ratio",
+    "brightness_mean",
+    "saturation_mean",
+    "contrast_std",
+    "colorfulness",
+    "warmth",
+    "edge_density",
+    "sharpness",
+    "faces_ratio"
+  ],
+  "targets": [
+    "valence",
+    "arousal"
+  ],
+  "metrics": {
+    "MAE": {
+      "valence": 0.14482924401731828,
+      "arousal": 0.1256917492043808
+    },
+    "R2": {
+      "valence": 0.7779137730551864,
+      "arousal": 0.9266159767368404
+    }
+  }
+}
