@@ -1,0 +1,17 @@
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+# E701 (inline if/return) is intentional in valence/arousal lookup functions —
+# the aligned one-liner style makes the emotion space visually readable.
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+# load_dotenv() must run before backend modules that call os.getenv() at import time.
+# Imports after load_dotenv() are intentional; E402 does not apply here.
+"backend/main.py" = ["E402"]
+# sys.path.insert() before project imports is the standard script-as-module pattern.
+"backend/test_pipeline.py" = ["E402"]
+# Inline if/return is used as a decision table — one zone per line, visually aligned.
+"backend/label_audio_emotions.py" = ["E701"]
+"backend/label_picture_emotions.py" = ["E701"]

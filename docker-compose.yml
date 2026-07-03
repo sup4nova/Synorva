@@ -1,0 +1,24 @@
+services:
+  synorva-back:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/models:/app/backend/models
+      - ./backend/static/renders:/app/backend/static/renders
+    env_file:
+      - path: .env
+        required: false
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  synorva-front:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - synorva-back
+    restart: unless-stopped

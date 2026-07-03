@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, demo ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # ── Backend: lint + syntax check ─────────────────────────────
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Lint (ruff)
+        run: ruff check backend/
+
+      - name: Syntax check
+        run: python -m compileall -q backend/
+
+  # ── Frontend: lint + build ────────────────────────────────────
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: cd frontend && npm ci
+
+      - name: Lint (eslint)
+        run: cd frontend && npm run lint
+
+      - name: Build
+        run: cd frontend && npm run build
+
+  # ── Docker: vérifie que les images buildent ───────────────────
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker images
+        run: docker compose build
+
+  # ── Pipeline: test end-to-end du backend ─────────────────────
+  pipeline-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install requirements
+        run: pip install -r backend/requirements.txt
+
+      - name: Run pipeline test
+        run: python backend/test_pipeline.py
