@@ -8,7 +8,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageStat
 import cv2
-import joblib, json
+import joblib
+import json
 
 # Lazy-loaded at first call - avoids loading the model at import time
 _MODEL = None

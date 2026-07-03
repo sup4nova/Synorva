@@ -1,6 +1,9 @@
-__pycache__
+__pycache__/
 *.pyc
-models/
+*.pyo
+venv/
+.env*
 data/
-static/renders/
-.env  
+models/*.pkl
+static/renders/*
+*.csv  

@@ -76,7 +76,7 @@ export default function Upload() {
       if (!res.ok) throw new Error(text || `HTTP ${res.status}`);
       const json = JSON.parse(text);
       setMsg(`Image saved - ${json.saved_as ?? "OK"}`);
-    } catch (e: any) { setErr(e?.message ?? "Upload failed"); }
+    } catch (e) { setErr(e instanceof Error ? e.message : "Upload failed"); }
     finally { setLoading(false); }
   };
 
@@ -88,7 +88,7 @@ export default function Upload() {
       const res = await fetch(`${API}/api/analyze-image`, { method: "POST", body: fd });
       if (!res.ok) throw new Error(await res.text());
       setAnalysis(await res.json());
-    } catch (e: any) { setErr(e?.message ?? "Analysis failed"); }
+    } catch (e) { setErr(e instanceof Error ? e.message : "Analysis failed"); }
     finally { setBusy(false); setBusyAction(null); }
   };
 
@@ -104,7 +104,7 @@ export default function Upload() {
       setMixUrl(`${API ? API.replace(/\/+$/, "") : ""}${json.mix_url}?t=${Date.now()}`);
       setPicks(json.picks ?? null);
       setMsg("Track generated successfully");
-    } catch (e: any) { setErr(e?.message ?? "Generation failed"); }
+    } catch (e) { setErr(e instanceof Error ? e.message : "Generation failed"); }
     finally { setBusy(false); setBusyAction(null); }
   };
 

@@ -16,7 +16,6 @@
 
 import sys
 import numpy as np
-import cv2
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -243,7 +242,8 @@ def run_tests():
     else:
         try:
             from backend.auto_arranger import render_track
-            import tempfile, os
+            import tempfile
+            import os
 
             # Write to a temp file so we don't overwrite the real mix
             with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:

@@ -1,4 +1,4 @@
-# --- SYSTEM / ENVIRONNEMENT ---
+# SYSTEM / ENVIRONNEMENT
 venv/
 __pycache__/
 *.pyc
@@ -14,22 +14,17 @@ __pycache__/
 .cache/
 *.ipynb_checkpoints/
 
-# --- DEPENDANCES ---
+# DEPENDANCES
 node_modules/
-package-lock.json
 yarn.lock
 dist/
 build/
 
-# --- DATASETS / AUDIO / IMAGES ---
-# Données brutes (ne jamais push)
+# DATASETS / AUDIO / IMAGES
 data/raw_audio/
 data/raw_audio/**/*
-
 data/raw_picture/
 data/raw_picture/**/*
-
-# Données traitées lourdes
 data/audio_proc/
 data/image_proc/
 data/features/
@@ -38,7 +33,7 @@ data/models/
 data/experiments/
 data/checkpoints/
 
-# --- SORTIES / EXPORTS ---
+# OUTPUTS / EXPORTS
 exports/
 outputs/
 renders/
@@ -54,30 +49,30 @@ renders/
 *.mp4
 *.mov
 
-# --- NOTEBOOKS TEMPORAIRES / TESTS ---
+# NOTEBOOKS / TESTS
 notebooks/tmp/
 scratch/
 *.tmp
 *.bak
 
-# --- MODELES / POIDS ---
+# MODELS
 *.pt
 *.pth
 *.ckpt
 *.onnx
 
-# --- CONFIGS LOCALES ---
+# LOCAL
 *.local.json
 *.local.yaml
 *.secret.*
 config_local/
 secrets/
 
-#--- DATASETS ---
+# DATASETS
 *.csv
 data/**/*.csv
 
-#--- FETCH PICS ---
+# FETCH PICS
 backend/fetch_dataset.py
 
 backend/static/renders/*
