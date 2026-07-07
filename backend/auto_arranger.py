@@ -43,9 +43,21 @@ ARRANGE = {
     "riser":  {"bars": (29, 33), "pattern": "hold"},
 }
 
-# Reads from audio_features_labeled.csv - output of the full audio pipeline
-SAMPLES_CSV = str(_as_path(os.getenv("CSV_LABELED"), "data/audio_features_labeled.csv"))
-OUT_WAV     = str(ROOT / "backend" / "static" / "renders" / "mix.wav")
+OUT_WAV = str(ROOT / "backend" / "static" / "renders" / "mix.wav")
+
+def _resolve_samples_csv() -> str:
+    configured = os.getenv("CSV_LABELED")
+    if configured:
+        return str(_as_path(configured, ""))
+    main_csv = ROOT / "data" / "audio_features_labeled.csv"
+    demo_csv = ROOT / "data" / "demo_audio_features_labeled.csv"
+    if main_csv.exists():
+        return str(main_csv)
+    if demo_csv.exists():
+        return str(demo_csv)
+    raise FileNotFoundError(
+        "No samples CSV found. Run: python scripts/build_demo_dataset.py"
+    )
 
 
 # ============ TEMPO UTILS ============
@@ -87,7 +99,8 @@ def _loudness_normalize(y: np.ndarray, target_db=-18.0) -> np.ndarray:
 
 # ============ DATA ============
 
-def load_samples_index(path=SAMPLES_CSV) -> pd.DataFrame:
+def load_samples_index(path: str | None = None) -> pd.DataFrame:
+    path = path or _resolve_samples_csv()
     # Load the labeled audio CSV and normalize column names for the arranger.
     # Renames tempo_bpm -> bpm and adds an empty key column if missing.
     df = pd.read_csv(path)

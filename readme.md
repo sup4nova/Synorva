@@ -40,6 +40,14 @@ SAD ----------+---------- HAPPY
 
 ---
 
+## Model notes
+
+`valence`/`arousal` are currently produced by a **hand-tuned weighted heuristic** over the 11 visual features (see `label_picture_emotions.py`) - not learned from human-perceived emotion. The RandomForest in `train_picture_reg.py` is trained on those same heuristic labels, so it distills/smooths the heuristic rather than learning an independent ground truth; its R² measures how well a forest can re-fit a deterministic formula of its own inputs, not how well it predicts human-perceived emotion.
+
+This is an intentional first pass, not a hidden flaw - see [Roadmap](#roadmap) for the plan to validate (and if needed, recalibrate) the heuristic against real human annotations.
+
+---
+
 ## Stack
 
 **Backend**
@@ -179,6 +187,12 @@ Exits `0` if score ≥ 70%, `1` otherwise.
 
 ## Roadmap
 
+- [ ] **Validate the emotion heuristic against real human annotations**
+  - Sample 200-300 images from `data/raw_picture/`, balanced across the 8 emotion classes, shuffled
+  - Build a small annotation tool (static HTML/JS or Streamlit) with a clickable 2D valence/arousal pad (Russell circumplex) → saves `image_id, valence_human, arousal_human, annotator_id` to CSV
+  - Collect annotations from 2-3 people (with some overlap) to measure inter-annotator agreement
+  - Average/median per image = human ground truth; compare against the heuristic (`compute_valence_arousal_images`) via Pearson correlation / MAE / R² - this becomes the real quality signal, replacing the current heuristic-vs-heuristic R²
+  - Optionally refit the heuristic's weights via linear regression on human labels and compare to the hand-picked weights
 - [ ] GPT-4 Vision - natural language emotion description
 - [ ] HuggingFace LLM support (Mistral 7B)
 - [ ] Extended sample library
