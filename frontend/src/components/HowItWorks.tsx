@@ -3,7 +3,7 @@ const steps = [
     num: '01',
     label: 'Ingest',
     title: <>Read the <span className="it">image.</span></>,
-    desc: 'A vision encoder parses composition, palette, contrast and subject — extracting the perceptual signals a human would feel before they could name them.',
+    desc: 'Computer vision extracts brightness, warmth, contrast, edges, sharpness and other visual signals — the raw cues a human would feel before they could name them.',
     art: (
       <div className="art-image" />
     ),
@@ -12,7 +12,7 @@ const steps = [
     num: '02',
     label: 'Project',
     title: <>Map the <span className="it">emotion.</span></>,
-    desc: 'Project the embedding onto a valence-arousal plane plus four perceptual axes — tension, warmth, density, motion — calibrated on annotated film scores.',
+    desc: 'Those features are weighted into a valence-arousal score and classified into one of 8 emotion labels, from aggressive to dreamy.',
     art: (
       <div className="art-spectrum">
         {(['VAL', 'ARO', 'TENS', 'WARM'] as const).map((l, i) => (
@@ -30,7 +30,7 @@ const steps = [
     num: '03',
     label: 'Render',
     title: <>Compose the <span className="it">track.</span></>,
-    desc: 'Coordinates seed an audio diffusion model conditioned on genre presets. Out comes a 30-second loop — coherent, looped at the bar, ready to drop in.',
+    desc: 'The valence-arousal score picks the closest-matching kick, bass, melody and riser from a curated sample library, and arranges them into a bar-aligned mix.',
     art: (
       <div className="art-wave">
         {Array.from({ length: 24 }, (_, i) => (
@@ -42,10 +42,10 @@ const steps = [
 ]
 
 const caps = [
-  { val: <>8<span className="it">d</span></>,    label: 'emotion axes' },
-  { val: <>~6<span className="it">s</span></>,   label: 'render time' },
-  { val: <>320<span className="it">kbps</span></>, label: 'audio quality' },
-  { val: <>12<span className="it">+</span></>,   label: 'genre presets' },
+  { val: <>8</>,                                label: 'emotion labels' },
+  { val: <>~6<span className="it">s</span></>,  label: 'render time' },
+  { val: <>44.1<span className="it">kHz</span></>, label: 'WAV output' },
+  { val: <>11</>,                               label: 'visual features' },
 ]
 
 export default function HowItWorks() {

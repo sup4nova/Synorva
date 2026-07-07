@@ -50,7 +50,7 @@ jobs:
       - name: Build
         run: cd frontend && npm run build
 
-  # ── Docker: vérifie que les images buildent ───────────────────
+  # ── Docker: checks that the images build ───────────────────────
   docker:
     runs-on: ubuntu-latest
 
@@ -60,7 +60,7 @@ jobs:
       - name: Build Docker images
         run: docker compose build
 
-  # ── Pipeline: test end-to-end du backend ─────────────────────
+  # ── Pipeline: end-to-end backend test ──────────────────────────
   pipeline-test:
     runs-on: ubuntu-latest
 

@@ -86,7 +86,7 @@ Synorva/
 │   ├── collect_samples.py         # downloads audio samples (Freesound)
 │   ├── pipeline.py                # rebuild all datasets in one command
 │   ├── test_pipeline.py           # end-to-end reliability test
-│   ├── models/                    # trained .pkl - git-ignored
+│   ├── models/                    # trained .pkl - committed so image analysis works out of the box
 │   ├── data/                      # samples_index.csv
 │   └── static/renders/            # generated audio mixes
 ├── data/
@@ -191,12 +191,22 @@ Exits `0` if score ≥ 70%, `1` otherwise.
 
 ## Roadmap
 
-- [ ] **Validate the emotion heuristic against real human annotations**
-  - Sample 200-300 images from `data/raw_picture/`, balanced across the 8 emotion classes, shuffled
-  - Build a small annotation tool (static HTML/JS or Streamlit) with a clickable 2D valence/arousal pad (Russell circumplex) → saves `image_id, valence_human, arousal_human, annotator_id` to CSV
-  - Collect annotations from 2-3 people (with some overlap) to measure inter-annotator agreement
-  - Average/median per image = human ground truth; compare against the heuristic (`compute_valence_arousal_images`) via Pearson correlation / MAE / R² - this becomes the real quality signal, replacing the current heuristic-vs-heuristic R²
-  - Optionally refit the heuristic's weights via linear regression on human labels and compare to the hand-picked weights
+**Step 1 - Validate before adding complexity (in progress)**
+
+Today's labels come from a hand-made heuristic: my quality score currently measures a model re-fitting its own formula, not real perceived emotion. I'm collecting human annotations (clickable valence/arousal pad, 2-3 annotators, inter-annotator agreement) to get real ground truth and measure the gap via Pearson correlation / MAE.
+
+- Sample 200-300 images from `data/raw_picture/`, balanced across the 8 emotion classes, shuffled
+- Build a small annotation tool (static HTML/JS or Streamlit) with a clickable 2D valence/arousal pad (Russell circumplex) → saves `image_id, valence_human, arousal_human, annotator_id` to CSV
+- Collect annotations from 2-3 people (with some overlap) to measure inter-annotator agreement
+- Average/median per image = human ground truth; compare against the heuristic (`compute_valence_arousal_images`) via Pearson correlation / MAE / R² - this becomes the real quality signal, replacing the current heuristic-vs-heuristic R²
+- Optionally refit the heuristic's weights via linear regression on human labels and compare to the hand-picked weights
+
+**Step 2 - Move to a neural network (planned)**
+
+Once real human ground truth is in place, replace the heuristic + RandomForest with a learned model (CNN / vision transformer, or CLIP-style fine-tuning) trained on those annotations. The key point: the neural network doesn't come before quality data to train it on - otherwise it's just added complexity without a solid foundation.
+
+**Step 3 - Product enrichment**
+
 - [ ] GPT-4 Vision - natural language emotion description
 - [ ] HuggingFace LLM support (Mistral 7B)
 - [ ] Extended sample library
