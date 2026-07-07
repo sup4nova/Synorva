@@ -40,10 +40,13 @@ app.mount(
     name="static",
 )
 
-# Allow the Vite dev server to call the API without CORS errors
+# Allow the Vite dev server (and CORS_ORIGINS, if set) to call the API
+_default_origins = "http://localhost:5173,http://localhost"
+_cors_origins = os.getenv("CORS_ORIGINS", _default_origins).split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost"],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -93,7 +96,7 @@ def health():
     return {"ok": True}
 
 
-@app.post("/upload-image")
+@app.post("/api/upload-image")
 async def upload_image(file: UploadFile = File(...)):
     """
     Save an uploaded image to uploads/ and return its path.

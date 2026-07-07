@@ -140,6 +140,10 @@ cd frontend && npm run dev
 
 Open `http://localhost:5173`
 
+**What works right after cloning, without any local data:** image analysis (`/api/analyze-image`) — the trained regressor (`backend/models/picture_valaro.pkl`) is committed, so brightness/warmth/etc. → valence/arousal prediction works immediately.
+
+**What needs local data:** full track generation (`/api/build-track`) needs audio samples in `data/raw_audio/<instrument>/` (not included - see [Freesound](https://freesound.org/apiv2/apply/) licensing) plus `python -m backend.pipeline` to build the sample index. Pre-rendered example outputs (image + generated track) are shipped in `frontend/public/demo/` for a no-setup preview.
+
 ---
 
 ## Docker
@@ -168,7 +172,7 @@ git pull && docker compose up --build -d
 | `/health` | GET | liveness check |
 | `/api/analyze-image` | POST | `{ valence, arousal }` |
 | `/api/build-track` | POST | `{ valence, arousal, mix_url, picks }` |
-| `/upload-image` | POST | saves to `/uploads/` (debug) |
+| `/api/upload-image` | POST | saves to `/uploads/` (debug) |
 
 All endpoints accept `multipart/form-data` with a `file` field.
 

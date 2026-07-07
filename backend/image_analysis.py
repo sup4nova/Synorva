@@ -6,6 +6,7 @@
 
 from pathlib import Path
 import numpy as np
+import pandas as pd
 from PIL import Image, ImageStat
 import cv2
 import joblib
@@ -45,9 +46,11 @@ def predict_valaro_from_bgr(img_bgr, file_name=None):
     model, meta = _load_regressor()
     feats = extract_image_features(img_bgr, file_name=file_name)
 
-    # Use the column order saved at training time - order matters for sklearn
+    # Use the column order saved at training time - order matters for sklearn.
+    # Kept as a DataFrame (not a raw ndarray) so column names match what the
+    # model was fitted with, avoiding sklearn's "missing feature names" warning.
     cols = meta["feature_cols"]
-    X = np.array([[float(feats[c]) for c in cols]], dtype=float)
+    X = pd.DataFrame([[float(feats[c]) for c in cols]], columns=cols)
 
     pred = model.predict(X)[0]  # returns [valence, arousal]
     return {"valence": float(pred[0]), "arousal": float(pred[1]), "features_used": cols}
